@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { User } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -23,6 +23,11 @@ export class UsersService {
     
     async createUser(user: User): Promise<string>{
         const userHashedPassword = await this.hashPassword(user.userPassword)
+        const userExisted = await this.getUser(user.userName);
+
+        if (userExisted) {
+            throw new ConflictException('Username already exists');
+        }
 
         try {
             await this.userRepository.save({...user, userPassword: userHashedPassword}) // Va insérer un utilisateur avec un mot de pass hashé.
