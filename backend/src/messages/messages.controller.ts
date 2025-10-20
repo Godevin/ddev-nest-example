@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { MessagesService } from './messages.service';
-import type { MessagesDto } from 'src/models/messages.models';
+import type { MessagesDto } from 'backend/src/models/messages.models';
 
 
 @Controller('messages')

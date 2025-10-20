@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { MessagesDto } from 'src/models/messages.models';
+import { MessagesDto } from 'backend/src/models/messages.models';
 
 @Injectable()
 export class MessagesService {
